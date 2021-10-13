@@ -5695,7 +5695,9 @@ input[type="email"].transparent {
 }
 
 .service-text p {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  color: #fff;
+}
 
 /* Hi Icon */
 .hi-icon {
