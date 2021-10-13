@@ -3079,7 +3079,7 @@ header .flex-child.flex-right {
     font-size: 17px;
     line-height: 30px;
     margin-bottom: 0;
-    color: #fff;
+    color: #fff !important;
   }
   .intro.style-3 {
     padding: 173px 0 269px; }
