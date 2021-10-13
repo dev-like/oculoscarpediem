@@ -113,32 +113,6 @@
       @include('front.partials._scripts')
       <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
       <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
-      <script>
-      window.addEventListener("load", function(){
-      window.cookieconsent.initialise({
-        "palette": {
-          "popup": {
-            "background": "#f7f7f7",
-            "text": "#6c6c6c"
-          },
-          "button": {
-            "background": "#23abc4",
-            "text": "#ffffff"
-          }
-        },
-        "theme": "classic",
-        "content": {
-          "header": 'Cookies used on the website!',
-          "message": 'This website uses cookies to ensure you get the best experience on our website.',
-          "dismiss": 'Got it!',
-          "allow": 'Allow cookies',
-          "deny": 'Decline',
-          "link": 'Learn more',
-          "href": 'http://cookiesandyou.com',
-        }
-      })
-      });
-      </script>
-
+    
     <script src="{{ asset('assets/js/pages.js') }}"></script>
 </body>
