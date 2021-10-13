@@ -3078,7 +3078,9 @@ header .flex-child.flex-right {
   .intro.style-2 .intro-text-lead p {
     font-size: 17px;
     line-height: 30px;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+    color: #fff;
+  }
   .intro.style-3 {
     padding: 173px 0 269px; }
     @media only screen and (max-width: 767px) {
@@ -5696,7 +5698,7 @@ input[type="email"].transparent {
 
 .service-text p {
   margin-bottom: 0;
-  color: #fff;
+
 }
 
 /* Hi Icon */
