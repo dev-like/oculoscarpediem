@@ -78,34 +78,33 @@ public function produtos()
 
     // $parceiros = Parceiro::all()->where('imagem', '<>', '');
 
-
     return view('front.listagem', [
       'linha'=>$linha,
       'quemsomos'=>$quemsomos,
-        'parceiross'=>$parceiross,
-
+      'parceiross'=>$parceiross,
       'parceirosss'=>$parceirosss,
   ]);
 }
 
-public function getSingleProduto($linha, $slug)
-{
-  $linha = Linha::all();
-  $parceiross = DB::table('produtos')->join('foto_produtos','produtos.id','=','foto_produtos.produtos_id')->select([ 'produtos.slug as produtos_slug','produtos.imagem as produtos_imagem','foto_produtos.imagem as imagem','produtos.nome as produtos_nome', 'produtos.id as produtos_id'])
-  ->where('produtos.deleted_at')->where('produtos.nome','=',$slug)->get();
-  $parceirosss = DB::table('produtos')->join('linha','produtos.linha_id','=','linha.id')->select([ 'produtos.slug as produtos_slug','linha.slug as linha_slug','produtos.imagem','produtos.nome as produtos_nome','linha.nome as linha_nome', 'produtos.id as produtos_id'])->where('produtos.deleted_at')->where('produtos.nome','=',$slug)->get();
-  $quemsomos = Quemsomos::find(1);
-
-  // $parceiros = Parceiro::all()->where('imagem', '<>', '');
-
-  // dd($parceiross);
-  return view('front.produto', [
-    'linha'=>$linha,
-    'quemsomos'=>$quemsomos,
-      'parceiross'=>$parceiross,
-
-    'parceirosss'=>$parceirosss,
-]);
-}
+    // Carregar único produto - Nathan Albuquerque
+    public function getSingleProduto($linha, $slug)
+    {
+      $imagens = DB::table('produtos')->join('linha','produtos.linha_id','=','linha.id')->join('foto_produtos','produtos.id','=','foto_produtos.produtos_id')->select([ 'produtos.slug as produtos_slug','linha.slug as linha_slug','produtos.imagem as produtos_imagem','foto_produtos.imagem as imagem','produtos.nome as produtos_nome','linha.nome as linha_nome', 'produtos.id as produtos_id'])->where('produtos.deleted_at')->get();
+      $produtos = DB::table('produtos')->join('linha','produtos.linha_id','=','linha.id')->select([ 'produtos.slug as produtos_slug','linha.slug as linha_slug','produtos.imagem','produtos.nome as produtos_nome','linha.nome as linha_nome', 'produtos.id as produtos_id'])->where('produtos.deleted_at')->get();
+      $quemsomos = Quemsomos::find(1);
+      $classes = array('selected', 'next', 'nextRightSecond', 'hideRight');
+      
+      // hideLeft prevLeftSecond prev selected next nextRightSecond hideRight // Esses são os nomes das classes
+      
+      return view('front.produto', [
+        'linha'=>$linha,
+        'slug'=>$slug,
+        'quemsomos'=>$quemsomos,
+        'imagens'=>$imagens,
+        'produtos'=>$produtos,
+        'classes'=>$classes,
+        ]);
+    }
+    // Fim Carregar único produto - Nathan Albuquerque
 
 }

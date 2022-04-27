@@ -9,7 +9,7 @@
 
                 <div class="widget footer-about-us">
                   <a href="#">
-                      <img src="{{url('/')}}/assets/img/logo-rodape.png" alt="Footer logo" />
+                      <img src="{{url('/')}}/assets/img/logo-rodape.webp" alt="Footer logo" />
                   </a>
                   <p class="mb-0">A Carpe Diem, é uma empresa brasileira, que atua no ramo óptico, teve seu início em março de 2015, priorizando sempre um excelente atendimento e ofertando os melhores produtos aos clientes.</p>
                 </div>
@@ -19,8 +19,8 @@
                 <div class="widget footer-get-in-touch">
                   <h5 class="widget-title uppercase">CONTATO</h5>
 
-                  <p>{!!$quemsomos->telefone1!!}</p>
-                  <p>{!!$quemsomos->email!!}</p>
+                  <p>{!! $quemsomos -> telefone1 !!}</p>
+                  <p>{!! $quemsomos -> email !!}</p>
 
                 </div>
               </div> <!-- end stay in touch -->

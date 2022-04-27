@@ -19,7 +19,7 @@ Cadastro
   <div class="card-box">
     <h4 class="m-t-0 header-title"><b>Cadastro de Produto</b></h4>
 
-    {{ Form::open(['route' => 'produto.store', 'files' => true]) }}
+    {{ Form::open(['url' => 'admin/admin/produto', 'files' => true]) }}
             <div class="row">
               <div class="form-group col-md-6">
                   {{ Form::label('nome', 'Nome') }}
@@ -35,16 +35,28 @@ Cadastro
                   @endforelse
                 </select>
               </div>
-
-
-
+              
             </div>
+            
+            <!-- Carregamento de imagens -->
             <div class="row">
               <div class="form-group col-md-6" >
-                {!! Form::label('imagem', 'Imagem') !!}
-                <input type="file" name="imagem[]" class="filestyle" data-placeholder="Enviar imagem" data-btnClass="btn-light" multiple>
+                {!! Form::label('imagem', 'Upload de imagem') !!}
+                <input type="file" name="imagem[]" class="filestyle" data-placeholder="Enviar imagem [ 1 ]" data-btnClass="btn-dark" multiple>
+                
+                {!! Form::label('imagem', '   ') !!}
+                <input type="file" name="imagem[]" class="filestyle" data-placeholder="Enviar imagem [ 2 ]" data-btnClass="btn-dark" multiple>
               </div>
-              <div class="form-group col-md-6">
+              <div class="form-group col-md-6" >
+                {!! Form::label('imagem', '   ') !!}
+                <input type="file" name="imagem[]" class="filestyle" data-placeholder="Enviar imagem [ 3 ]" data-btnClass="btn-dark" multiple>
+                
+                {!! Form::label('imagem', '   ') !!}
+                <input type="file" name="imagem[]" class="filestyle" data-placeholder="Enviar imagem [ 4 ]" data-btnClass="btn-dark" multiple>
+              </div>
+              
+              <!-- Inserir descrição do produto -->
+              <div class="form-group col-md-12">
                   {{ Form::label('descricao', 'Descrição') }}
                   {{ Form::text('descricao', null, array('class' => 'form-control')) }}
               </div>
@@ -56,7 +68,7 @@ Cadastro
               <div class="form-group col-12">
                 <div class="text-center">
                   <button class="btn btn-success" type="submit" value="Salvar"><i class="fa fa-save m-r-5"></i> Salvar</button>
-                  <a href="{{ route('produto.index') }}" class="btn btn-danger"><i class="fa fa-window-close m-r-5"></i> Cancelar</a>
+                  <a href="{{ url('admin/admin/produto') }}" class="btn btn-danger"><i class="fa fa-window-close m-r-5"></i> Cancelar</a>
                 </div>
               </div>
             </div>

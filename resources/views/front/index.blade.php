@@ -1,57 +1,22 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+  <head> <!-- Required meta tags-->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Carpe Diem" />
+    <meta name="author" content="LIKE_DSG" />
+    <title>Carpe Diem</title>
+    @include('front.partials._style')
+  </head>
+  <body class="relative grid-1440">
 
-    <!-- Required meta tags-->
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Carpe Diem" />
-        <meta name="author" content="LIKE_DSG" />
-        <title>Carpe Diem</title>
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="{{url('/')}}/assets/img/favicon.png" />
-        <!-- Google Font -->
-        @include('front.partials._style')
-
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" />
-
-    </head>
-
-    <body>
-
-
-<body class="relative grid-1440">
-
-  <!-- Preloader -->
-  <div class="loader-mask">
-    <div class="loader">
-      <div></div>
-      <div></div>
+    <!-- Preloader -->
+    <div class="loader-mask">
+      <div class="loader">
+        <div></div>
+        <div></div>
+      </div>
     </div>
-  </div>
-
-  <!-- Sidenav -->
-  <section class="sidenav">
-    <img class="logo-dark mb-30" src="{{url('/')}}/assets/img/logo.png" alt="logo">
-    <p>We possess within us two minds. So far I have written only of the conscious mind. I would now like to introduce you to your second mind, the hidden and mysterious subconscious.</p>
-    <img src="{{url('/')}}/assets/img/sidenav_img.jpg" class="sidenav-img" alt="">
-    <h6 class="mt-40">Get in Touch</h6>
-    <address class="info-address">Philippines, Afela inc.<br> Talay st. 65, PO Box 6200 </address>
-    <p>Phone: <a href="tel:+1-888-1554-456-123">+ 1-888-1554-456-123</a></p>
-    <p>Email: <a href="mailto:themesupport@gmail.com">themesupport@gmail.com</a></p>
-    <p>Fax: +63 918 4084 694</p>
-    <div class="social-icons nobase dark mt-40">
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-facebook"></i></a>
-      <a href="#"><i class="fa fa-google-plus"></i></a>
-      <a href="#"><i class="fa fa-linkedin"></i></a>
-      <a href="#"><i class="fa fa-vimeo"></i></a>
-    </div>
-
-    <a href="#" id="sidenav-close">
-      <i class="ui-close"></i>
-    </a>
-  </section> <!-- end sidenav -->
 
   <main class="main-wrapper oh">
 
@@ -241,68 +206,160 @@
           </div>
         </div>
       </section> <!-- end intro -->
+      
       <!-- <section "section-wrap icon-boxes intro style-2 bg-light sobre">
         <div class="container">
           <div class="row">
-
-
-    </div>
-  </div>
-
+          </div>
+        </div>
       </section> -->
 
-      <!-- Portfolio Slider -->
-
-      <!-- Popular Products -->
-      <section class="section-wrap intro style-2" style="background-color:#c4c4c4">
-        <div class="container">
-
-          <div class="col-sm-5 mb-30">
-              <h2 class="intro-heading uppercase">NOSSOS PRODUTOS</h2>
+      <!-- Carrossel Nathan Albuquerque -->
+      <section class="section-wrap intro style-2" style="background-image: url(../assets/img/bg/bg-produtos-min.avif);">
+         
+        <div class="container container-carrossel">
+            
+          <div class="row-sm-5 mb-30">
+            <h2 class="intro-heading uppercase" style="margin-left: 100px;">NOSSOS PRODUTOS</h2>
           </div>
 
+        <div class="block-media">
+          <div class="carousel-images slider-nav">
+            
+            <?php $cont = 0; $id_imagem[] = 0 ?>
+            @foreach ($parceirosss as $parceiroo)
+            <?php $cont++ ?>
+              <div class="papular-block ">
+                <div data-js="vaso" class="vaso">
 
-
-            <!-- Popular Item Slide -->
-            <div class="papular-block block-slide">
-
-              <!-- Item -->
-              @foreach ($parceirosss as $parceiroo)
-
-              <div class="item" style="padding-right:20px">
-                <!-- Item img -->
-                <div class="item-img">
-                    <?php $count=0; ?>
+                  <?php $primeira_image = true; $images = 0 ?>
                   @foreach ($parceiross as $imagem)
-                  @if ($imagem->produtos_id == $parceiroo->produtos_id)
-                        <img class="img-{!!$count=$count+1!!}" src="uploads/produtos/{{$imagem->imagem}}" alt="" >
-                      @endif
-
+                    @if ($imagem->produtos_id == $parceiroo->produtos_id)
+                      {!! $id_imagem[$cont] = $imagem->produtos_id !!}
+                      <div data-js="vaso__item{!! $cont !!}" class="vaso__item <?php if($primeira_image){echo "vaso__item--visible";} ?>"><img src="uploads/produtos/{{$imagem->imagem}}" /></div>
+                      <?php $primeira_image = false; $images++ ?>
+                    @endif
                   @endforeach
+                  
+                  <div class="vaso__actions" style="<?php if($images == 1){echo "display:none;";} ?>">
+                    <button data-js="vaso__button--prev{!! $cont !!}" class="button_p" aria-label="Slide anterior"><</button>
+                    <button data-js="vaso__button--next{!! $cont !!}" class="button_n" aria-label="Próximo slide">></button>
+                  </div>
+
                   <div class="overlay">
                     <div class="position-center-center">
-                      <div class="inn"><a href="uploads/produtos/{{$imagem->imagem}}" data-lighter=""><i class="fa fa-search"></i></a> <a href="https://api.whatsapp.com/send?phone=5599981600047&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Fui%20redirecionado%20(a)%20atrav%C3%A9s%20do%20link%20do%20site%20%F0%9F%98%8E.%20Gostaria%20de%20saber%20mais%20sobre%20esse%20produto%3A {{url('/')}}/{{$parceiroo->linha_slug}}/{{$parceiroo->produtos_slug}}"><i class="fa fa-shopping-cart"></i></a></div>
+                      <div class="inn">
+                        <a data-js="parametros_modal" data-toggle="modal" data-target="#modalCarrossel" data-lighter="" data-whatever="{{$parceiroo->produtos_nome}}" onclick="escapeJS({{$parceiroo->produtos_id}})"><i class="fa fa-search"></i></a>
+                        <a href="https://api.whatsapp.com/send?phone=5599981600047&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Fui%20redirecionado%20(a)%20atrav%C3%A9s%20do%20link%20do%20site%20%F0%9F%98%8E.%20Gostaria%20de%20saber%20mais%20sobre%20esse%20produto%3A {{url('/')}}/{{$parceiroo->linha_slug}}/{{$parceiroo->produtos_slug}}"><i class="fa fa-shopping-cart"></i></a>
+                      </div>
                     </div>
                   </div>
+                  
                 </div>
-                <!-- Item Name -->
-
-                <!-- Price -->
-                <!-- <span class="price"><small>$</small>299</span> </div> -->
-                <!-- <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a> -->
-
-
-                <div class="item-name"> <a href="/{{$parceiroo->linha_slug}}/{{$parceiroo->produtos_slug}}">{{$parceiroo->produtos_nome}}</a>
+                
+                <div class="item-name">
+                  <a>{{$parceiroo->produtos_nome}}</a>
                   <p>{{$parceiroo->linha_nome}}</p>
                 </div>
+                
               </div>
-                @endforeach
-
+            @endforeach
+            
           </div>
-
-
-      </section> <!-- end portfolio slider -->
-
+        </div><!-- /.block-media -->    
+      </div><!-- /.container -->
+      
+      <div class="row-sm-5 mb-30" style="margin-top: 100px;">
+          <button type="button" class="btn btn-dark botao_ver_todos" style="margin-left: 45%;"><a style="color: #FFF;" href="https://oculoscarpediem.com.br/produtos">VER TODOS</a></button>
+      </div>
+        
+      </section> <!-- Fim Carrosse Nathan Albuquerque -->
+      
+      <!-- Carrossel Modal --> 
+        <div id="modalCarrossel" class="modal fade" role="dialog">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+        
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <?php
+                    $tagg = '<h4 class="modal-title"></h4>';
+                    $partes = array('<h4 class="modal-title">', '</h4>');
+                    $palavra = str_replace($partes, "", $tagg);
+                    echo $tagg;
+                    echo $palavra;
+                ?>
+              </div>
+              <div class="modal-body">
+                  
+                 
+                        
+                        <!--
+                      $('#modalCarrossel').on('show.bs.modal', function (event) {
+                      var button = $(event.relatedTarget) // Botão que acionou o modal
+                      var recipient = button.data('whatever') // Extrai informação dos atributos data-*
+                      var recipienta = button.data('whatevera')
+                      // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
+                      // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
+                      var modal = $(this)
+                      modal.find('.modal-title').text('Visualize o ' + recipient)
+                      modal.find('.modal-body input').val(recipient)
+                      })
+                      
+                        
+                        <script>
+                        function display_image(src, width, height, alt) {
+                            var a = document.createElement("img");
+                            a.src = src;
+                            a.width = width;
+                            a.height = height;
+                            a.alt = alt;
+                            document.body.appendChild(a);
+                        }
+                        
+                        display_image('JavaScript.jpg', 
+                                         276, 
+                                         110, 
+                                         'JavaScriptImage');
+                        </script>
+                        -->
+                        
+                        
+                        <!--
+                        @foreach ($parceiross as $imagem)
+                            @if ($imagem->produtos_id == $id_imagem[1])
+                                <div>
+                                    <img src="uploads/produtos/{{$imagem->imagem}}"/>
+                                </div>
+                            @endif
+                        @endforeach
+                        -->
+                        <div class="block-media">
+                        <div class="carousel-images slider-nav">
+              
+                        @foreach ($parceirosss as $parceiroo)
+                        @foreach ($parceiross as $imagem)
+                            @if ($imagem->produtos_id == $parceiroo->produtos_id)
+                                <div>
+                                    <img class="imagem{{$imagem->produtos_id}}" src="uploads/produtos/{{$imagem->imagem}}"/>
+                                </div>
+                            @endif
+                        @endforeach
+                        @endforeach
+                        
+                        </div>
+                        </div>
+                   
+                  
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+        
+          </div>
+        </div><!-- Fim carrossel modal -->
+       
       <section class="section-wrap intro style-2">
         <div class="container">
 
@@ -334,17 +391,17 @@
           <div class="row">
 
             <div class="col-md-6 img-box-holder animated-left">
-              <div class="img-box img-2">
-                <img src="{{url('/')}}/assets/img/bg/fale-conosco.png" alt="" class="hidden-lg hidden-md">
+              <div class="img-box img-2" style="background-image: url(../uploads/quemsomos/{{$quemsomos->imagem1}});"> <!-- Nathan Albuquerque -->
+                <img src="{{url('/')}}/uploads/quemsomos/{{$quemsomos->imagem1}}" alt="" class="hidden-lg hidden-md">
               </div>
             </div>
 
-            <div class="container-fluid semi-fluid">
+            <div class="container-fluid">
               <div class="row">
 
                 <!-- text box -->
                 <div class="col-md-6 col-md-offset-6 clearfix animated-right">
-                  <div class="row text-box">
+                  <div class="row text-box" style="padding: 140px 30% 140px 12%; background-image: url(../uploads/quemsomos/{{$quemsomos->imagem2}});"> <!-- Nathan Albuquerque -->
                     <div class="col-md-12">
                       <h2 class="uppercase">FALE CONOSCO</h2>
                       <p>
@@ -372,6 +429,16 @@
       <section class="section bg-cover localizacao">
           <div id="contatos" class="container-fluid">
               <div class="row">
+                  
+                  <!-- <iframe id="iframe"
+                      width="100%" 
+                      height="560px" 
+                      style="border:0" 
+                      loading="lazy" 
+                      allowfullscreen 
+                      src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOZkbVZFfxZIRVfJ-PgcAPSw&key=AIzaSyCTu3UWdcJRQPGfermjLnALwykPHhctbA4">
+                  </iframe> -->
+                  
                   <iframe id="iframe"
                       width="100%"
                       height="560px"
@@ -390,7 +457,7 @@
       <section>
           <div class="container-fluid" style="padding:0;">
             <a href="https://linktr.ee/oculoscarpediem">
-              <img src="{{url('/')}}/assets/img/bg/cta.png" alt="" class="hidden-md">
+              <img src="{{url('/')}}/assets/img/bg/cta.avif" alt="" class="hidden-md">
             </a>
           </div>
         </section>
@@ -449,6 +516,21 @@
   });
   </script>
 
+<script>
+  
+        
+        
+        
+        $('#modalCarrossel').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Botão que acionou o modal
+          var recipient = button.data('whatever') // Extrai informação dos atributos data-*
+          // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
+          // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
+          var modal = $(this)
+          modal.find('.modal-title').text('Visialize o ' + recipient)
+          modal.find('.modal-body input').val(recipient)
+        })
+</script>
 
 </body>
 </html>

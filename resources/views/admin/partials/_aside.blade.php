@@ -21,7 +21,6 @@
                     <i class="fa fa-shopping-basket"></i> <span> Produtos </span>
                   </a>
                 </li>
-
                 @if(Auth::User()->nivel == 1)
                 <li>
                   <a href="{{ route('usuario.index') }}">

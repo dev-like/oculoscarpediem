@@ -18,15 +18,16 @@ Editar Produtos
 @section('content')
 <div class="col-12">
   <div class="card-box">
-
+        <h4 class="m-t-0 header-title"><b>Ediçaõ de Produto Cadastrados</b></h4>
+        
     {!! Form::model($produtos, array('route' => ['produto.update', $produtos->id,'enctype'=>'multipart/form-data'] ,'method' => 'PUT', 'files' => true)) !!}
 
     <div class="row">
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
           {{ Form::label('nome', 'Nome') }}
           {{ Form::text('nome', null, array('class' => 'form-control','maxlength' => '255')) }}
       </div>
-      <div class="form-group col-md-4" >
+      <div class="form-group col-md-6" >
         {{ Form::label('linha', 'Linha') }}
         <select class="js-example-basic-multiple" data-style="form-control" name="linha_id" id="linha_id" required="required">
           @forelse ($linhas as $linha)
@@ -39,11 +40,20 @@ Editar Produtos
 
     </div>
     <div class="row">
-      <div class="form-group col-md-4" >
-        {!! Form::label('imagem', 'Imagem') !!}
-        <input type="file" name="imagem" id="imagem" class="filestyle" data-placeholder="{{$produtos->imagem}}" data-btnClass="btn-light">
+      <div class="form-group col-md-6" >
+
+        {!! Form::label('imagem', 'Upload de imagens') !!}
+        <input type="file" name="imagem[]" id="imagem" class="filestyle" data-placeholder=" [ 1 ] {{$produtos->imagem}}" data-btnClass="btn-dark" mutiple>
+        {!! Form::label('imagem', '   ') !!}
+        <input type="file" name="imagem[]" id="imagem" class="filestyle" data-placeholder=" [ 2 ] {{$produtos->imagem}}" data-btnClass="btn-dark" mutiple>
       </div>
-      <div class="form-group col-md-8">
+      <div class="form-group col-md-6" >
+        {!! Form::label('imagem', '   ') !!}
+        <input type="file" name="imagem[]" id="imagem" class="filestyle" data-placeholder=" [ 3 ] {{$produtos->imagem}}" data-btnClass="btn-dark" mutiple>
+        {!! Form::label('imagem', '   ') !!}
+        <input type="file" name="imagem[]" id="imagem" class="filestyle" data-placeholder=" [ 4 ] {{$produtos->imagem}}" data-btnClass="btn-dark" mutiple>
+      </div>
+      <div class="form-group col-md-12">
           {{ Form::label('descricao', 'Descrição') }}
           {{ Form::text('descricao', null, array('class' => 'form-control')) }}
       </div>

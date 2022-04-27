@@ -15,7 +15,7 @@
                         <img src="{{ asset('assets/img/logo.png') }}" alt="" height="50">
                       </span>
                       <i>
-                        <img src="{{ asset('template/images/logo_sm.png') }}" alt="" height="48">
+                        <img src="{{ asset('assets/img/favicon.ico') }}" alt="" height="48">
                       </i>
                     </a>
                 </div>

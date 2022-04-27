@@ -415,6 +415,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
  }
  /*=======================================================
+       CARROSSEL
+ ========================================================*/
+ 
+.container-carrossel {
+    margin-right: 15px;
+    margin-left: 15px;
+    width: auto;
+    height: 280px;
+ }
+ 
+.botao_ver_todos {
+        margin-left: 45%;
+    height: 40px;
+    width: 160px;
+    border-radius: 5px;
+}
+ 
+ /*=======================================================
        PAPULAR ITEM
  ========================================================*/
  .papular-block .item-img {
@@ -445,8 +463,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
  	/* background: rgba(255,255,21,0.75); */
  	position: absolute;
  	height: 100%;
- 	width: 100%;
- 	left: 0px;
+ 	width: 80%;
+ 	left: 10%;
  	top: 0px;
  	opacity: 0;
  	-webkit-transition: 0.4s ease-in-out;
@@ -455,9 +473,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
  	-o-transition: 0.4s ease-in-out;
  	transition: 0.4s ease-in-out;
  }
- .papular-block .item:hover .overlay {
+ .papular-block:hover .overlay {
  	opacity: 1;
  }
+
  .papular-block .item-img {
  	margin-bottom: 30px;
  }
@@ -540,26 +559,24 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
  	left: 0px;
  }
  .papular-block .item-name {
- 	width: 100%;
- 	text-align: center;
+    margin-top: 10px;
+ 	width: 80%;
+ 	text-align: left;
  	z-index: 9;
  }
  .papular-block .item-name p {
  	font-family: 'Playfair Display', serif;
- 	font-size: 14px;
+ 	font-size: 16px;
  	margin: 0px;
- 	margin-top: 10px;
  }
  .papular-block .item-name a {
- 	font-size: 22px;
+ 	font-size: 13px;
  	font-weight: bold;
- 	letter-spacing: 3px;
+ 	letter-spacing: 2px;
  	color: #2d3a4b;
  	text-transform: uppercase;
  }
- .papular-block .item-name a:hover {
- 	color: #ffe115;
- }
+
  .on-sale {
  	background: #ffe115;
  	position: absolute;
@@ -3055,12 +3072,12 @@ header .flex-child.flex-right {
 /* Intro
 /*-------------------------------------------------------*/
 .sobre{
-  background-image: url("../img/bg/base.png");
+  background-image: url("../img/bg/base.avif");
 
   }
 
   .intro {
-  padding: 58px 0;
+  padding: 58px 58px 18px 58px;
   /* Amsterdam
   -------------------------------------------------------*/
   /* Stockholm
@@ -3499,15 +3516,19 @@ section.angle-bottom {
   z-index: 2; }
 
 .img-box.img-1 {
-  background-image: url(../img/about_1.jpg); }
+  background-image: url(../img/about_1.avif); }
 
-.img-box.img-2 {
-  background-image: url(../img/bg/fale-conosco.png); }
+/*.img-box.img-2 { <!-- Nathan Albuquerque -->
+  background-image: url(../img/bg/bg-faleconosco-e-min.avif); }*/
 
-.text-box {
-  padding: 140px 30% 140px 12%; }
+/*.text-box { <!-- Nathan Albuquerque -->
+  padding: 140px 30% 140px 12%;
+  background-image: url(../img/bg/bg-faleconosco-d-min.avif);
+}*/
   .text-box.sm {
-    padding: 12%; }
+    padding: 12%;
+    
+  }
 
 .text-box-feature h4 {
   font-size: 18px; }
@@ -3666,7 +3687,7 @@ section.angle-bottom {
 /* Contact
 /*-------------------------------------------------------*/
 .contact.bg-parallax {
-  background-image: url(../img/parallax/contact_bg.jpg);
+  background-image: url(../img/parallax/contact_bg.avif);
   padding: 200px 0; }
   .contact.bg-parallax .contact-item p,
   .contact.bg-parallax .contact-item span,
@@ -4246,16 +4267,16 @@ input[type="email"].transparent {
   will-change: transform; }
 
 .counters.bg-parallax .parallax-inner {
-  background-image: url(../img/parallax/results_bg.jpg); }
+  background-image: url(../img/parallax/results_bg.avif); }
 
 .testimonials.bg-parallax .parallax-inner {
-  background-image: url(../img/parallax/testimonials_bg.jpg); }
+  background-image: url(../img/parallax/testimonials_bg.avif); }
 
 .testimonials.style-2.bg-parallax .parallax-inner {
-  background-image: url(../img/parallax/testimonials_bg_3.jpg); }
+  background-image: url(../img/parallax/testimonials_bg_3.avif); }
 
 .call-to-action.bg-parallax .parallax-inner {
-  background-image: url(../img/parallax/cta_bg.jpg); }
+  background-image: url(../img/parallax/cta_bg.avif); }
 
 .mobile .parallax-inner {
   background-attachment: scroll !important;
@@ -7045,7 +7066,7 @@ table th {
   margin-bottom: 20px; }
 
 .promo-features.bg-img {
-  background-image: url(../img/promo_features_bg.jpg);
+  background-image: url(../img/promo_features_bg.avif);
   background-attachment: scroll;
   background-size: auto;
   -webkit-background-size: auto; }

@@ -31,10 +31,11 @@ Route::get('csrf', function () {
 
         Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-        Route::resource('quemsomos', 'QuemSomosController');
+        Route::resource('admin/quemsomos', '\App\Http\Controllers\QuemSomosController');
+        Route::resource('admin/faleconosco', '\App\Http\Controllers\FaleConoscoController');
 
-        Route::resource('linha', 'LinhaController');
-        Route::resource('produto', 'ProdutoController');
+        Route::resource('admin/linha', '\App\Http\Controllers\LinhaController');
+        Route::resource('admin/produto', '\App\Http\Controllers\ProdutoController');
 
         Route::resource('usuario', 'UserController');
         Route::get('usuario/{usuario}/editar_senha', 'UserController@editPassword')->name('usuario.editar_senha');

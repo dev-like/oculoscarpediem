@@ -73,7 +73,7 @@ Produtos Cadastrados
       function(){
         $.ajax({
           type: "DELETE",
-          url: "{{ url('admin/produto') }}/"+id,
+          url: "{{ url('admin/admin/produto') }}/"+id,
           data: {'id': id},
           success: function(data){
             swal({
@@ -85,7 +85,7 @@ Produtos Cadastrados
              function () {
              },
              function(){
-               window.location = "{{ route('produto.index') }}";
+               window.location = "{{ url('admin/admin/produto') }}";
              }
            );
           },

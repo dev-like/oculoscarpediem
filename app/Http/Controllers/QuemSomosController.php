@@ -10,7 +10,7 @@ use Image;
 use Storage;
 use DB;
 
-class QuemsomosController extends Controller
+class QuemSomosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -54,9 +54,13 @@ class QuemsomosController extends Controller
           $image = $request->file('imagem1');
           $filename = time() . '.' . $image->getClientOriginalName();
           $location = public_path('uploads/quemsomos/' . $filename);
+          dd($image);
           Image::make($image)->save($location);
           $request->imagem1 = $filename;
           // dd($request->imagem1);
+          
+          list($largura_orig, $altura_orig, $tipo, $atributo) = getimagesize($location);
+          dd($largura_orig);
       }
       if ($request->hasFile('imagem2')) {
           $image = $request->file('imagem2');
@@ -126,7 +130,33 @@ class QuemsomosController extends Controller
         $location = public_path('uploads/quemsomos/' . $filename);
 
         Image::make($image)->save($location);
-        $quemsomos->imagem1 = $filename;
+        $quemsomos->imagem1 = pathinfo($location, PATHINFO_FILENAME) . '.webp'; // $filename;
+        
+        //redimensionamento de imagens - Nathan Albuquerque
+        
+        list($largura_orig, $altura_orig, $tipo, $atributo) = getimagesize($location);
+        
+        $novaImagem = imagecreatetruecolor($largura_orig, $altura_orig);
+        
+        switch($tipo)
+        {
+            case 2:
+                $origem = imagecreatefromjpeg($location);
+                imagecopyresampled($novaImagem, $origem, 0, 0, 0, 0, $largura_orig, $altura_orig, $largura_orig, $altura_orig);
+                break;
+            case 3:
+                $origem = imagecreatefrompng($location);
+                imagecopyresampled($novaImagem, $origem, 0, 0, 0, 0, $largura_orig, $altura_orig, $largura_orig, $altura_orig);
+                break;
+        }
+        
+        $new_location = pathinfo($location, PATHINFO_DIRNAME) . '/' . pathinfo($location, PATHINFO_FILENAME) . '.webp';
+        imagewebp($novaImagem, $new_location);
+        
+        imagedestroy($novaImagem);
+        imagedestroy($origem);
+        
+        // fim redimensionamento de imagens - Nathan Albuquerque
 
     }
     if ($request->hasFile('imagem2')) {
@@ -135,12 +165,38 @@ class QuemsomosController extends Controller
         $location = public_path('uploads/quemsomos/' . $filename);
 
         Image::make($image)->save($location);
-        $quemsomos->imagem2 = $filename;
+        $quemsomos->imagem2 = pathinfo($location, PATHINFO_FILENAME) . '.webp'; // $filename;
+        
+        //redimensionamento de imagens - Nathan Albuquerque
+        
+        list($largura_orig, $altura_orig, $tipo, $atributo) = getimagesize($location);
+        
+        $novaImagem = imagecreatetruecolor($largura_orig, $altura_orig);
+        
+        switch($tipo)
+        {
+            case 2:
+                $origem = imagecreatefromjpeg($location);
+                imagecopyresampled($novaImagem, $origem, 0, 0, 0, 0, $largura_orig, $altura_orig, $largura_orig, $altura_orig);
+                break;
+            case 3:
+                $origem = imagecreatefrompng($location);
+                imagecopyresampled($novaImagem, $origem, 0, 0, 0, 0, $largura_orig, $altura_orig, $largura_orig, $altura_orig);
+                break;
+        }
+        
+        $new_location = pathinfo($location, PATHINFO_DIRNAME) . '/' . pathinfo($location, PATHINFO_FILENAME) . '.webp';
+        imagewebp($novaImagem, $new_location);
+        
+        imagedestroy($novaImagem);
+        imagedestroy($origem);
+        
+        // fim redimensionamento de imagens - Nathan Albuquerque
 
     }
         $quemsomos->save();
-        $request->session()->flash('success', 'O texto foi modificado com sucesso');
-        return redirect('admin/quemsomos')->with('flash_message', 'Quem somos alterado com sucesso !');
+        $request->session()->flash('success', 'Quem somos alterado com sucesso !');
+        return redirect('admin/admin/quemsomos')->with('flash_message', 'Quem somos alterado com sucesso !');
     }
 
     /**

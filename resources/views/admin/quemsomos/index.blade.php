@@ -80,15 +80,18 @@ Cadastro
         </div>
       </div>
       <div class="row">
-        <div class="form-group col-md-4" style="margin-top: 20px">
+        <div class="form-group col-md-6" style="margin-top: 20px">
           {!! Form::label('missao', 'Missão') !!}
           {!! Form::textarea('missao', null, array('class' => 'form-control','maxlength' => '2500','rows'=>'8')) !!}
         </div>
-        <div class="form-group col-md-4" style="margin-top: 20px">
+        <div class="form-group col-md-6" style="margin-top: 20px">
           {!! Form::label('visao', 'Visão') !!}
           {!! Form::textarea('visao', null, array('class' => 'form-control','maxlength' => '2500')) !!}
         </div>
-        <div class="form-group col-md-4" style="margin-top: 20px">
+        
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12" style="margin-top: 20px">
           {!! Form::label('valores', 'Valores') !!}
           {!! Form::textarea('valores', null, array('class' => 'form-control','maxlength' => '2500')) !!}
       </div>
@@ -106,17 +109,19 @@ Cadastro
       <img src="{{ asset('uploads/quemsomos/'. $quemsomos->imagem1) }}" class="form-control banner" style="height:auto">
       </div>
       @endif
-      <div class="form-group col-md-6">
-        {{ Form::label('imagem1','Imagem') }}
+      <div class="form-group col-md-9">
+        {{ Form::label('imagem1','Imagem esquerda - Fale Conosco') }}
         <input type="file" name="imagem1" id="imagem1" class="filestyle" data-buttonText="Carregar" data-placeholder="{!!$quemsomos->imagem1!!}" data-btnClass="btn-light" >
       </div>
+    </div>
+    <div class="row">
       @if($quemsomos->imagem2)
       <div class="form-group col-md-3">
       <img src="{{ asset('uploads/quemsomos/'. $quemsomos->imagem2) }}" class="form-control banner" style="height:auto">
       </div>
       @endif
-      <div class="form-group col-md-6">
-        {{ Form::label('imagem2','Imagem') }}
+      <div class="form-group col-md-9">
+        {{ Form::label('imagem2','Imagem direita - Fale Conosco') }}
         <input type="file" name="imagem2" id="imagem2" class="filestyle" data-buttonText="Carregar" data-placeholder="{!!$quemsomos->imagem2!!}" data-btnClass="btn-light" >
       </div>
     </div>
@@ -177,7 +182,7 @@ Cadastro
                  document.getElementById("cnpj").value = data.cnpj;
                  document.getElementById("razaosocial").value = data.nome;
                  document.getElementById("nomefantasia").value = data.fantasia;
-                 document.getElementById("email").value =  data.email;
+                //  document.getElementById("email").value =  data.email;
                  if ((data.telefone).length > 14){
                    var res = data.telefone.split(" / ");
                    document.getElementById("telefone1").value =  res[0];
@@ -213,6 +218,43 @@ Cadastro
   var editor_config = {
     path_absolute : "/",
     selector: "textarea#quemsomos",
+    height:350,
+    plugins: [
+      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+      "searchreplace wordcount visualblocks visualchars code fullscreen",
+      "insertdatetime media nonbreaking save table contextmenu directionality",
+      "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    relative_urls: false,
+    file_browser_callback : function(field_name, url, type, win) {
+      var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+      var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+
+      var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+      if (type == 'image') {
+        cmsURL = cmsURL + "&type=Images";
+      } else {
+        cmsURL = cmsURL + "&type=Files";
+      }
+
+      tinyMCE.activeEditor.windowManager.open({
+        file : cmsURL,
+        title : 'Filemanager',
+        width : x * 0.8,
+        height : y * 0.8,
+        resizable : "yes",
+        close_previous : "no"
+      });
+    }
+  };
+
+    tinymce.init(editor_config);
+  </script>
+<script>
+  var editor_config = {
+    path_absolute : "/",
+    selector: "textarea#valores",
     height:350,
     plugins: [
       "advlist autolink lists link image charmap print preview hr anchor pagebreak",

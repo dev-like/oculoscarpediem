@@ -51,7 +51,7 @@ class ProdutoController extends Controller
         $i = 0;
         $produtos = new Produto;
         $prod=$produtos->fill($request->all());
-
+        
         if ($request->hasFile('imagem')) {
           // dd($prod);
           $prod->linha_id=$request->linha_id;
@@ -63,11 +63,44 @@ class ProdutoController extends Controller
             $foto_produtos = new Foto_produtos;
             // $foto_produtos->fill($request->all());
             $image = $file;
+            // dd($file);
             // dd(count($prod));
             $filename = $file->getClientOriginalName();
             $location = public_path('uploads/produtos/' . $filename);
             Image::make($image)->save($location);
-            $foto_produtos->imagem = $filename;
+            
+            //redimensionamento de imagens - Nathan Albuquerque
+            
+            list($width_orig, $height_orig, $tipo, $atributo) = getimagesize($location);
+            
+            $novaImagem = imagecreatetruecolor(215, 215);
+            
+            switch($tipo){
+                case 1:
+                    $origem = imagecreatefromgif($location);
+                    break;
+                case 2:
+                    $origem = imagecreatefromjpeg($location);
+                    break;
+                case 3:
+                    $origem = imagecreatefrompng($location);
+                    break;
+                case 18:
+                    $origem = imagecreatefromwebp($location);
+                    break;
+            }
+            
+            imagecopyresampled($novaImagem, $origem, 0, 0, 0, 0, 215, 215, $width_orig, $height_orig);
+            $new_location = pathinfo($location, PATHINFO_DIRNAME) . '/' . pathinfo($location, PATHINFO_FILENAME) . '.webp';
+            imagewebp($novaImagem, $new_location);
+            
+            imagedestroy($novaImagem);
+            imagedestroy($origem);
+            // unlink($location)
+        
+            // fim redimensionamento de imagens - Nathan Albuquerque
+            
+            $foto_produtos->imagem = pathinfo($location, PATHINFO_FILENAME) . '.webp'; // $filename;
             $foto_produtos->slug = $slug;
             $foto_produtos->produtos_id = $produtos->id;
             $foto_produtos->save();
@@ -77,9 +110,9 @@ class ProdutoController extends Controller
 
         // dd($produtos);
         $request->session()->flash('success', 'Produto adicionado com sucesso.');
-          return redirect('admin/produto');
+          return redirect('admin/admin/produto');
     }
-
+    
     public function tirarAcentos($string)
     {
       return preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/","/(ç)/","/(Ç)/","/(\/)/","/(:)/","/(,)/","/(!)/","/(?)/",'/\(|\)/'),explode(" ","a A e E i I o O u U n N c C - - - - "),$string);
@@ -100,13 +133,14 @@ class ProdutoController extends Controller
 
     public function update(Request $request, $id)
     {
+      dd($id);
       $produtos = Produto::find($id);
 
       $slug = Self::tirarAcentos(str_replace(" ", "", $request->nome));
 
       $produtos->fill($request->all());
       $this->validate($request, array(
-      'imagem'        => 'sometimes|image|mimes:png,jpg,jpeg,gif,svg',
+      'imagem'        => 'mimes:png,jpg,jpeg,gif,svg,avif',
       ));
       // dd($produtos);
       if ($request->hasFile('imagem')) {
@@ -128,7 +162,7 @@ class ProdutoController extends Controller
 
       $produtos->save();
       $request->session()->flash('success', 'Produto alterado com sucesso.');
-      return redirect('admin/produto');
+      return redirect('admin/admin/produto');
     }
 
     public function destroy($id)
@@ -142,6 +176,6 @@ class ProdutoController extends Controller
         // }
 
         $produtos->delete();
-        return [response()->json("success"), redirect('admin/produtos')];
+        return [response()->json("success"), redirect('admin/admin/produtos')];
     }
 }

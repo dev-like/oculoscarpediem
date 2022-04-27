@@ -1,0 +1,73 @@
+.vaso {
+  overflow: hidden;
+  max-width: 215px;
+  position: relative;
+}
+
+.vaso .vaso__item,
+.vaso .vaso__item--hidden {
+  display: none;
+}
+
+.vaso .vaso__item img {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.vaso .vaso__item--visible {
+  display: block;
+  animation: fadeVisibility 0.5s;
+}
+
+.vaso .vaso__actions {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vaso .vaso__actions button {
+  border: 0;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 15px;
+  height: 35px;
+  color: rgba(255,255,255,0.77);
+  background-color: transparent;
+}
+
+.papular-block:hover .vaso .vaso__actions button:hover {
+  color: #555;
+  background-color: rgba(0,0,0,0.1);
+}
+
+.vaso .vaso__actions .button_p {
+    border-radius: 0 50px 50px 0;
+}
+
+.vaso .vaso__actions .button_n{
+    border-radius: 50px 0 0 50px;
+}
+
+.vaso .vaso__actions button[data-js="vaso__button--prev"] {
+  margin-left: 20px;
+}
+
+.vaso .vaso__actions button[data-js="vaso__button--next"] {
+  margin-right: 20px;
+}
+
+@keyframes fadeVisibility {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    transform: opacity linear;
+  }
+}
