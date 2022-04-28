@@ -417,21 +417,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
  /*=======================================================
        CARROSSEL
  ========================================================*/
- 
+
 .container-carrossel {
     margin-right: 15px;
     margin-left: 15px;
     width: auto;
     height: 280px;
  }
- 
+
 .botao_ver_todos {
         margin-left: 45%;
     height: 40px;
     width: 160px;
     border-radius: 5px;
 }
- 
+
  /*=======================================================
        PAPULAR ITEM
  ========================================================*/
@@ -473,7 +473,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
  	-o-transition: 0.4s ease-in-out;
  	transition: 0.4s ease-in-out;
  }
- .papular-block:hover .overlay {
+ .vaso:hover .overlay {
  	opacity: 1;
  }
 
@@ -755,7 +755,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
 .main-container {
   margin: auto; }
 
-@media (min-width: 1600px) {
+@media (min-width: 6600px) {
   .grid-1440 .main-container,
   .grid-1440 .container,
   .grid-1440 .rev_slider_wrapper.container {
@@ -3527,7 +3527,7 @@ section.angle-bottom {
 }*/
   .text-box.sm {
     padding: 12%;
-    
+
   }
 
 .text-box-feature h4 {
@@ -6903,7 +6903,7 @@ button.btn:hover {
 
 .modal-body,
 .modal-footer {
-  padding: 30px; }
+  padding: 0px; }
 
 .modal-header {
   padding: 15px 30px; }

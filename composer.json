@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "ayesh/instagram-download": "5.x-dev",
         "dyrynda/laravel-cascade-soft-deletes": "^4.1",
         "fideloper/proxy": "^4.4",
         "guzzlehttp/guzzle": "^7.3",

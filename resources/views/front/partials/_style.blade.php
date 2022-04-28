@@ -5,10 +5,10 @@
 <!-- <link rel="stylesheet" href="{{url('/')}}/assets/css/novo_carrossel_saltado.css" /> -->
 
 <!-- Carrossel agrupado -->
-    <!-- Carrossel -->
-    <link rel="stylesheet" href="{{url('/')}}/assets/css/style2.css" />
-    <!-- Slider -->
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/jquery.slick/1.3.8/slick.css'>
+<!-- Carrossel -->
+<link rel="stylesheet" href="{{url('/')}}/assets/css/style2.css" />
+<!-- Slider -->
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/jquery.slick/1.3.8/slick.css'>
 
 <!-- Google Fonts -->
 <link href='https://fonts.googleapis.com/css?family=Barlow:400,600,700%7CRoboto:400,400i,700%7CNoto+Serif:400i' rel='stylesheet'>

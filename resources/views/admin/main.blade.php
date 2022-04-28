@@ -68,4 +68,4 @@
 
         @yield('scripts')
     </body>
-</html>
+</html Required>

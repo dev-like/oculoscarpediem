@@ -206,7 +206,7 @@
           </div>
         </div>
       </section> <!-- end intro -->
-      
+
       <!-- <section "section-wrap icon-boxes intro style-2 bg-light sobre">
         <div class="container">
           <div class="row">
@@ -216,17 +216,17 @@
 
       <!-- Carrossel Nathan Albuquerque -->
       <section class="section-wrap intro style-2" style="background-image: url(../assets/img/bg/bg-produtos-min.avif);">
-         
+
         <div class="container container-carrossel">
-            
+
           <div class="row-sm-5 mb-30">
             <h2 class="intro-heading uppercase" style="margin-left: 100px;">NOSSOS PRODUTOS</h2>
           </div>
 
         <div class="block-media">
           <div class="carousel-images slider-nav">
-            
-            <?php $cont = 0; $id_imagem[] = 0 ?>
+
+            <?php $cont = 0 ?>
             @foreach ($parceirosss as $parceiroo)
             <?php $cont++ ?>
               <div class="papular-block ">
@@ -235,12 +235,11 @@
                   <?php $primeira_image = true; $images = 0 ?>
                   @foreach ($parceiross as $imagem)
                     @if ($imagem->produtos_id == $parceiroo->produtos_id)
-                      {!! $id_imagem[$cont] = $imagem->produtos_id !!}
                       <div data-js="vaso__item{!! $cont !!}" class="vaso__item <?php if($primeira_image){echo "vaso__item--visible";} ?>"><img src="uploads/produtos/{{$imagem->imagem}}" /></div>
                       <?php $primeira_image = false; $images++ ?>
                     @endif
                   @endforeach
-                  
+
                   <div class="vaso__actions" style="<?php if($images == 1){echo "display:none;";} ?>">
                     <button data-js="vaso__button--prev{!! $cont !!}" class="button_p" aria-label="Slide anterior"><</button>
                     <button data-js="vaso__button--next{!! $cont !!}" class="button_n" aria-label="Próximo slide">></button>
@@ -249,117 +248,43 @@
                   <div class="overlay">
                     <div class="position-center-center">
                       <div class="inn">
-                        <a data-js="parametros_modal" data-toggle="modal" data-target="#modalCarrossel" data-lighter="" data-whatever="{{$parceiroo->produtos_nome}}" onclick="escapeJS({{$parceiroo->produtos_id}})"><i class="fa fa-search"></i></a>
+                        <a data-js="parametros_modal" data-toggle="modal" data-target="#modalCarrossel" data-lighter="" data-slug="{{$parceiroo->produtos_slug}}" data-idp="{{$parceiroo->produtos_id}}" data-linha="{{$parceiroo->linha_slug}}" data-whatever="{{$parceiroo->produtos_nome}}"><i class="fa fa-search"></i></a>
                         <a href="https://api.whatsapp.com/send?phone=5599981600047&text=Ol%C3%A1%2C%20tudo%20bem%3F%20Fui%20redirecionado%20(a)%20atrav%C3%A9s%20do%20link%20do%20site%20%F0%9F%98%8E.%20Gostaria%20de%20saber%20mais%20sobre%20esse%20produto%3A {{url('/')}}/{{$parceiroo->linha_slug}}/{{$parceiroo->produtos_slug}}"><i class="fa fa-shopping-cart"></i></a>
                       </div>
                     </div>
                   </div>
-                  
+
                 </div>
-                
+
                 <div class="item-name">
                   <a>{{$parceiroo->produtos_nome}}</a>
                   <p>{{$parceiroo->linha_nome}}</p>
                 </div>
-                
+
               </div>
             @endforeach
-            
+
           </div>
-        </div><!-- /.block-media -->    
+        </div><!-- /.block-media -->
       </div><!-- /.container -->
-      
+
       <div class="row-sm-5 mb-30" style="margin-top: 100px;">
           <button type="button" class="btn btn-dark botao_ver_todos" style="margin-left: 45%;"><a style="color: #FFF;" href="https://oculoscarpediem.com.br/produtos">VER TODOS</a></button>
       </div>
-        
+
       </section> <!-- Fim Carrosse Nathan Albuquerque -->
-      
-      <!-- Carrossel Modal --> 
+
+      <!-- Carrossel Modal -->
         <div id="modalCarrossel" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-lg modal-dialog-centered">
-        
+          <div class="modal-dialog modal-dialog-centered" style="width: 450px; margin: 15% auto;">
+
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <?php
-                    $tagg = '<h4 class="modal-title"></h4>';
-                    $partes = array('<h4 class="modal-title">', '</h4>');
-                    $palavra = str_replace($partes, "", $tagg);
-                    echo $tagg;
-                    echo $palavra;
-                ?>
-              </div>
-              <div class="modal-body">
-                  
-                 
-                        
-                        <!--
-                      $('#modalCarrossel').on('show.bs.modal', function (event) {
-                      var button = $(event.relatedTarget) // Botão que acionou o modal
-                      var recipient = button.data('whatever') // Extrai informação dos atributos data-*
-                      var recipienta = button.data('whatevera')
-                      // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
-                      // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
-                      var modal = $(this)
-                      modal.find('.modal-title').text('Visualize o ' + recipient)
-                      modal.find('.modal-body input').val(recipient)
-                      })
-                      
-                        
-                        <script>
-                        function display_image(src, width, height, alt) {
-                            var a = document.createElement("img");
-                            a.src = src;
-                            a.width = width;
-                            a.height = height;
-                            a.alt = alt;
-                            document.body.appendChild(a);
-                        }
-                        
-                        display_image('JavaScript.jpg', 
-                                         276, 
-                                         110, 
-                                         'JavaScriptImage');
-                        </script>
-                        -->
-                        
-                        
-                        <!--
-                        @foreach ($parceiross as $imagem)
-                            @if ($imagem->produtos_id == $id_imagem[1])
-                                <div>
-                                    <img src="uploads/produtos/{{$imagem->imagem}}"/>
-                                </div>
-                            @endif
-                        @endforeach
-                        -->
-                        <div class="block-media">
-                        <div class="carousel-images slider-nav">
-              
-                        @foreach ($parceirosss as $parceiroo)
-                        @foreach ($parceiross as $imagem)
-                            @if ($imagem->produtos_id == $parceiroo->produtos_id)
-                                <div>
-                                    <img class="imagem{{$imagem->produtos_id}}" src="uploads/produtos/{{$imagem->imagem}}"/>
-                                </div>
-                            @endif
-                        @endforeach
-                        @endforeach
-                        
-                        </div>
-                        </div>
-                   
-                  
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+              <div class="modal-body" id="response"></div>
             </div>
-        
+
           </div>
         </div><!-- Fim carrossel modal -->
-       
+
       <section class="section-wrap intro style-2">
         <div class="container">
 
@@ -429,16 +354,16 @@
       <section class="section bg-cover localizacao">
           <div id="contatos" class="container-fluid">
               <div class="row">
-                  
+
                   <!-- <iframe id="iframe"
-                      width="100%" 
-                      height="560px" 
-                      style="border:0" 
-                      loading="lazy" 
-                      allowfullscreen 
+                      width="100%"
+                      height="560px"
+                      style="border:0"
+                      loading="lazy"
+                      allowfullscreen
                       src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJOZkbVZFfxZIRVfJ-PgcAPSw&key=AIzaSyCTu3UWdcJRQPGfermjLnALwykPHhctbA4">
                   </iframe> -->
-                  
+
                   <iframe id="iframe"
                       width="100%"
                       height="560px"
@@ -514,23 +439,26 @@
           });
       });
   });
-  </script>
+</script>
 
 <script>
-  
-        
-        
-        
-        $('#modalCarrossel').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget) // Botão que acionou o modal
-          var recipient = button.data('whatever') // Extrai informação dos atributos data-*
-          // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
-          // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
-          var modal = $(this)
-          modal.find('.modal-title').text('Visialize o ' + recipient)
-          modal.find('.modal-body input').val(recipient)
-        })
+  $('#modalCarrossel').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var linha = button.data('linha')
+    var slug = button.data('slug')
+    var idp = button.data('idp')
+    $.ajax({
+      type: "GET",
+      url: linha+'/'+slug, // This is what I have updated
+      data: "",
+      success: function(data){
+        $('#response').html(data);
+      }
+    });
+  })
 </script>
+
+
 
 </body>
 </html>

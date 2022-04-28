@@ -17,14 +17,7 @@
   <script type="text/javascript" src="{{url('/')}}/assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
 
   <!-- Carrossel agrupado -->
-  <!-- Carrossel -->
   <script type="text/javascript" src="{{url('/')}}/assets/js/app.js"></script>
-  <!-- Slider -->
-  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.2.1/jquery-migrate.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.3.15/slick.min.js'></script>
   <script src="{{url('/')}}/assets/js/script.js"></script>
-      
-  <!-- Novo carrossel saltado -->
-  <!-- <script type="text/javascript" src="{{url('/')}}/assets/js/novo_carrossel_saltado.js"></script> -->
-  

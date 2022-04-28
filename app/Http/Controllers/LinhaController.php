@@ -45,8 +45,11 @@ class LinhaController extends Controller
      */
      public function store(Request $request)
      {
+
          $this->validate($request, array(
            'nome'          => 'required|max:225',
+           'imagem'          => 'required',
+           'descricao'          => 'required',
 
      ));
 
@@ -191,8 +194,11 @@ class LinhaController extends Controller
     public function destroy($id)
     {
         $linha = linha::find($id);
-        $produto = Produto::where('linha_id',$id)->Update(['linha_id'=>null]);
+        // $produto = Produto::where('linha_id',$id)->Update(['linha_id'=>null]);
         $linha->delete();
+
+        // DB::delete('DELETE FROM users WHERE id = ?', [$id]);
+        // $user = User::where('id', $id)->firstorfail()->delete();
 
         return [response()->json("success"), redirect('admin/linha')];
     }
