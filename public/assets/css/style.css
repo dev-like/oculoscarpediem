@@ -415,6 +415,46 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
  }
  /*=======================================================
+       CARROSSEL MODAL
+ ========================================================*/
+
+ .block-media {
+   height: 450px;
+ }
+
+ .modal-dialog {
+   width: 450px;
+   margin: 15% auto;
+ }
+
+ .imagem_modall {
+   height: 450px;
+   border-radius: 8px;
+ }
+
+ @media only screen and (max-width: 767px) {
+   .modal-dialog {
+     width: 215px;
+     height: 215px;
+     margin: 55% auto;
+   }
+
+   .block-media {
+     height: 215px;
+   }
+
+   .imagem_modall {
+     height: 215px;
+   }
+ }
+
+  @media only screen and (max-width: 1850px) {
+    .vaso {
+     margin-left: 15%;
+    }
+  }
+
+ /*=======================================================
        CARROSSEL
  ========================================================*/
 
@@ -563,6 +603,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', end
  	width: 80%;
  	text-align: left;
  	z-index: 9;
+  margin-left: 20%;
  }
  .papular-block .item-name p {
  	font-family: 'Playfair Display', serif;

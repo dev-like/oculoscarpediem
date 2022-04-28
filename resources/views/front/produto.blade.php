@@ -14,13 +14,13 @@
     <!-- <section class="section-wrap intro style-2">
       <div class="container"> -->
 
-    <div class="block-media" style="height: 450px;">
+    <div class="block-media">
       <div class="carousel-images single-item">
 
         @foreach ($imagens as $imagem)
           @if ($slug == $imagem->produtos_slug)
         <div>
-          <img src="../uploads/produtos/{{$imagem->imagem}}" alt="1" style="height: 450px; border-radius: 8px;">
+          <img src="../uploads/produtos/{{$imagem->imagem}}" alt="1" class="imagem_modall">
         </div>
           @endif
         @endforeach

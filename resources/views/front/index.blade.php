@@ -276,7 +276,7 @@
 
       <!-- Carrossel Modal -->
         <div id="modalCarrossel" class="modal fade" role="dialog">
-          <div class="modal-dialog modal-dialog-centered" style="width: 450px; margin: 15% auto;">
+          <div class="modal-dialog modal-dialog-centered">
 
             <div class="modal-content">
               <div class="modal-body" id="response"></div>
