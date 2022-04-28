@@ -90,7 +90,7 @@ Linhas Cadastradas
       function(){
         $.ajax({
           type: "DELETE",
-          url: "{{ url('admin/linha') }}/"+id,
+          url: "{{ url('admin/admin/linha') }}/"+id,
           data: {'id': id},
           success: function(data){
             swal({
